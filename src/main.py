@@ -1,14 +1,14 @@
 import screen as scr
 import pygame
 
-from classes.game import Game
+from classes.board import Board
 from controllers import event_controller
 
 def main():
     screen = scr.init()
-    game= Game()
+    board= Board()
     while True:
-        event_controller.event_controller(screen, game)
+        event_controller.event_controller(screen, board)
         pygame.display.update()
 
 if __name__=='__main__':
