@@ -64,3 +64,10 @@ class Board:
 
     def set_square(self, pos, value):
         self.__board[pos[0]][pos[1]]=value
+
+    def reset(self):
+        self.is_dest_set=False
+        self.is_origin_set=False
+        self.__origin_pos = (0, 0)
+        self.__dest_pos = (0, 0)
+        self.__board=np.zeros((constants.BOARD_SIZE,constants.BOARD_SIZE))

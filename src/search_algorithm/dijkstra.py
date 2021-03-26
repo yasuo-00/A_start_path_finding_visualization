@@ -8,6 +8,7 @@ from utils import distance
 from classes.node import Node
 import painter
 
+#TODO
 def find_path(self, origin_pos, dest_pos, board, screen):
         
         dest_node=self.__graph[dest_pos[0]][dest_pos[1]]

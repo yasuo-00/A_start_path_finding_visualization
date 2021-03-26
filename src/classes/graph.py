@@ -56,12 +56,12 @@ class Graph:
                                 self.__graph[row][col].neighbour_list.append(self.__graph[row][col+1])
     
     #must fix when no path is found
-    def find_path(self, board, screen, algorithm):
+    def find_path(self, board, screen, algorithm, use_manhattan_distance):
         origin_node=self.__graph[board.origin_pos[0]][board.origin_pos[1]]
         dest_node = self.__graph[board.dest_pos[0]][board.dest_pos[1]]
         
         if algorithm=='A*':
-            dest_path = a_star.a_star(origin_node, dest_node, board, screen)
+            dest_path = a_star.a_star(origin_node, dest_node, board, screen, use_manhattan_distance)
         elif algorithm=='DFS':
             dest_path=dfs.dfs(origin_node,dest_node, board, screen)
         elif algorithm=='BFS':

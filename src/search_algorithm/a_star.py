@@ -3,7 +3,7 @@ import painter
 from utils import distance
 
 #returns last node (destination_node)
-def a_star(origin_node, dest_node, board, screen):
+def a_star(origin_node, dest_node, board, screen, use_manhattan_distance):
     #put origin node on open_nodes_list (first to be expanded)
     open_nodes=list()
     closed_nodes=list()
@@ -26,14 +26,14 @@ def a_star(origin_node, dest_node, board, screen):
                     node.parent_node=curr_node
                     node.g=curr_node.g+1
                     #node.g=distance.euclidean_dist(node.pos, board.origin_pos)
-                    node.h=distance.euclidean_dist(node.pos, board.dest_pos)
+                    node.h=distance.calc_dist(node.pos, board.dest_pos, use_manhattan_distance)
                     open_nodes.append(node)
                 #if it was already visited
                 else:
                     #if it's on the list update value if new_value<curr_value
                     g=curr_node.g+1
                     #g=distance.euclidean_dist(node.pos, board.origin_pos)
-                    h=distance.euclidean_dist(node.pos, board.dest_pos)
+                    h=distance.calc_dist(node.pos, board.dest_pos, use_manhattan_distance)
                     if (g+h)<(node.g+node.h):
                         node.parent_node=curr_node
                         node.g=g
