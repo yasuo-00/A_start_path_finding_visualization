@@ -1,1 +1,1 @@
-# A_start_path_finding_visualization
+# A_start_graph_visualization

@@ -1,5 +1,6 @@
 from constants import constants
 import pygame
+import time
 
 def draw_init_board(screen):
 
@@ -17,3 +18,8 @@ def draw_init_board(screen):
 def draw_square(screen, pos, color):
 
     pygame.draw.rect(screen, color, [ pos[1]*constants.COL_HEIGHT,pos[0]*constants.ROW_WIDTH, constants.ROW_WIDTH, constants.COL_HEIGHT])
+
+def paint_search(screen, pos ):
+    time.sleep(constants.DELAY_TIME)
+    draw_square(screen, pos, constants.NEIGHBOUR_COLOR)
+    pygame.display.update()

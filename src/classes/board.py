@@ -1,5 +1,7 @@
 from constants import constants
 import numpy as np
+
+#should implement weight for weighted algorithms
 class Board:
     def __init__(self):
         self.__is_origin_set = False

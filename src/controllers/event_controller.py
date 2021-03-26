@@ -3,7 +3,7 @@ import sys
 import painter
 from constants import constants
 from utils import distance
-from classes.path_finding import Path_finding
+from classes.graph import Graph
 
 def event_controller(screen, board):
     for event in pygame.event.get():
@@ -44,11 +44,11 @@ def event_controller(screen, board):
                 pass
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_s:
-                path_finding = Path_finding()
-                path_finding.init_graph(board)
-                path_finding.set_graph_nodes_neighbours()
+                graph = Graph()
+                graph.init_graph(board)
+                graph.set_graph_nodes_neighbours(True)
                 print("start pathing")
-                dest = path_finding.find_path(board, screen)
+                dest = graph.find_path(board, screen, 'A*')
 
                 dest = dest.parent_node
                 print(dest.pos)
