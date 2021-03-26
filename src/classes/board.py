@@ -51,6 +51,10 @@ class Board:
     def set_wall(self,pos):
         if not self.is_pos_occupied(pos):
             self.__board[pos[0]][pos[1]]=-1
+    
+    def set_visited(self,pos):
+        if not self.is_pos_occupied(pos):
+            self.__board[pos[0]][pos[1]]=-4
 
     def is_pos_occupied(self, pos):
         return self.__board[pos[0]][pos[1]] != 0

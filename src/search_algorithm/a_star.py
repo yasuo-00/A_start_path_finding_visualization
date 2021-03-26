@@ -16,8 +16,8 @@ def a_star(origin_node, dest_node, board, screen):
     #while dest_node hasn't been chosen to be expanded
     while dest_node not in closed_nodes:
         for node in curr_node.neighbour_list:
-            if node is not dest_node and node.pos!= board.origin_pos:                 
-                painter.paint_search(screen, node.pos)
+            if node is not dest_node and node.pos!= board.origin_pos:
+                painter.paint_search(screen, node.pos, board)
             
             #if node not expanded (didn't visited all neighbours yet)
             if node not in closed_nodes:

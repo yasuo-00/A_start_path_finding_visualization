@@ -1,6 +1,7 @@
 import pygame
 import sys
 import painter
+import screen as scr
 from constants import constants
 from utils import distance
 from classes.graph import Graph
@@ -39,11 +40,15 @@ def event_controller(screen, board):
 
                 if board.board_at(pos)>=0:
                     painter.draw_square(screen, pos, constants.WALL_COLOR)
+                    painter.draw_lines(screen)
                     board.set_wall(pos)
             except AttributeError:
                 pass
         if event.type == pygame.KEYDOWN:
-            if event.key==pygame.K_s:
+            #reset board
+            if event.key==pygame.K_r:
+                scr.reset_screen(screen,board)
+            elif event.key==pygame.K_s:
                 graph = Graph()
                 graph.init_graph(board)
                 graph.set_graph_nodes_neighbours(True)
@@ -58,6 +63,32 @@ def event_controller(screen, board):
                         if board.board_at((row,col))==2:
                             painter.draw_square(screen, (row,col), constants.NEIGHBOUR_COLOR)
                 '''
+                while(dest.parent_node is not None):
+                    painter.draw_square(screen, dest.pos,constants.PATH_COLOR)
+                    dest = dest.parent_node
+            elif event.key==pygame.K_d:
+                graph = Graph()
+                graph.init_graph(board)
+                graph.set_graph_nodes_neighbours(True)
+                print("start pathing")
+                dest = graph.find_path(board, screen, 'DFS')
+                print('Final node')
+                print(dest.pos)
+                dest = dest.parent_node
+
+                while(dest.parent_node is not None):
+                    painter.draw_square(screen, dest.pos,constants.PATH_COLOR)
+                    dest = dest.parent_node
+            elif event.key==pygame.K_b:
+                graph = Graph()
+                graph.init_graph(board)
+                graph.set_graph_nodes_neighbours(True)
+                print("start pathing")
+                dest = graph.find_path(board, screen, 'BFS')
+                print('Final node')
+                print(dest.pos)
+                dest = dest.parent_node
+
                 while(dest.parent_node is not None):
                     painter.draw_square(screen, dest.pos,constants.PATH_COLOR)
                     dest = dest.parent_node
