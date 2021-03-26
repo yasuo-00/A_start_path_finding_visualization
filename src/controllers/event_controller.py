@@ -25,7 +25,7 @@ def event_controller(screen, board):
 
             elif not board.is_dest_set:  
                 #draw square on the clicked position
-                painter.draw_square(screen, pos, constants.dest_COLOR)
+                painter.draw_square(screen, pos, constants.DEST_COLOR)
                 board.is_dest_set=True
                 board.dest_pos=pos
                 dist = distance.euclidean_dist(board.origin_pos, board.dest_pos)
@@ -37,7 +37,7 @@ def event_controller(screen, board):
                 clicked_y = event.pos[0]//constants.COL_HEIGHT
                 pos=(clicked_x, clicked_y)
 
-                if not board.is_pos_occupied(pos):
+                if board.board_at(pos)>=0:
                     painter.draw_square(screen, pos, constants.WALL_COLOR)
                     board.set_wall(pos)
             except AttributeError:
@@ -48,11 +48,16 @@ def event_controller(screen, board):
                 path_finding.init_graph(board)
                 path_finding.set_graph_nodes_neighbours()
                 print("start pathing")
-                dest = path_finding.find_path(board.origin_pos, board.dest_pos)
+                dest = path_finding.find_path(board, screen)
 
                 dest = dest.parent_node
                 print(dest.pos)
-
+                '''
+                for row in range(constants.BOARD_SIZE):
+                    for col in range(constants.BOARD_SIZE):
+                        if board.board_at((row,col))==2:
+                            painter.draw_square(screen, (row,col), constants.NEIGHBOUR_COLOR)
+                '''
                 while(dest.parent_node is not None):
-                    painter.draw_square(screen, dest.pos,constants.VISITED_COLOR)
+                    painter.draw_square(screen, dest.pos,constants.PATH_COLOR)
                     dest = dest.parent_node

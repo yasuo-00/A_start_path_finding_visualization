@@ -55,3 +55,6 @@ class Board:
 
     def board_at(self,pos):
         return self.__board[pos[0]][pos[1]]
+
+    def set_square(self, pos, value):
+        self.__board[pos[0]][pos[1]]=value

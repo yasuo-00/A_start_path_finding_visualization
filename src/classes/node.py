@@ -3,7 +3,7 @@ from utils import distance
 from numpy.lib.function_base import select
 
 
-class Node:
+class Node(object):
 
     def __init__(self, pos, g=sys.maxsize, h=sys.maxsize, parent_node=None, ntype=''):
         self.__g=g
