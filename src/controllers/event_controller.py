@@ -40,7 +40,7 @@ def event_controller(screen, board, use_manhattan_distance, use_diagonal):
                 clicked_y = event.pos[0]//constants.COL_HEIGHT
                 pos = (clicked_x, clicked_y)
 
-                if board.board_at(pos) >= 0:
+                if board.board_at(pos) == 0:
                     painter.draw_square(screen, pos, constants.WALL_COLOR)
                     painter.draw_lines(screen)
                     board.set_wall(pos)
@@ -64,12 +64,7 @@ def event_controller(screen, board, use_manhattan_distance, use_diagonal):
                     print('No Path Found')
                     break
                 print(dest.pos)
-                '''
-                for row in range(constants.BOARD_SIZE):
-                    for col in range(constants.BOARD_SIZE):
-                        if board.board_at((row,col))==2:
-                            painter.draw_square(screen, (row,col), constants.NEIGHBOUR_COLOR)
-                '''
+
                 while(dest.parent_node is not None):
                     painter.draw_square(screen, dest.pos, constants.PATH_COLOR)
                     dest = dest.parent_node

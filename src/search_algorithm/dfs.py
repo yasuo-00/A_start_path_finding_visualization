@@ -13,7 +13,7 @@ def dfs(origin_node, dest_node, board, screen):
     curr_node=None
     
     #may have some bugs (check later)
-    #implement search painter for dfs
+    #implement heuristics
     while len(open_nodes)>0:
         curr_node=open_nodes.pop()
         painter.paint_search(screen,curr_node.pos,board)
